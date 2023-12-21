@@ -12,9 +12,6 @@ const taskName = document.querySelector("#time #taskName")
 renderTime()
 renderTasks()
 
-let mensaje = " Pomodoro por cada tarea de inicies tomara 25 minutos para su desarrolo y 5 minutos para descanso, lo que nos ayuda a manejar de mejor manera nuestro tiempo al momento de hacer deberes"
-window.prompt(mensaje)
-
 form.addEventListener('submit', e => {
     e.preventDefault()
     document.getElementById("h4").classList.replace("h4", "h42")
@@ -39,8 +36,8 @@ function renderTasks(){
     const html = tasks.map(task => {
         return `
             <div class="task">
-            <div class="title"> - ${task.title}</div>
-            <div class="completed"> ${task.completed ? `<span class="done">Hecha</span>` : `<button id="butt" class="start-button" data-id="${task.id}">Iniciar</button>`} </div>
+                <div class="title"> ${task.title}</div>
+                <div class="completed"> ${task.completed ? `<span class="done">Tarea Hecha</span>` : `<button id="butt" class="start-button" data-id="${task.id}">Iniciar Tarea</button>`} </div>
             </div>
         `
     })
@@ -55,7 +52,7 @@ function renderTasks(){
             if(!timer){
                 const id = button.getAttribute("data-id")
                 startButtonHandler(id)
-                button.textContent = "En Progreso ..."
+                button.textContent = "En Progreso"
                 button.classList.replace("start-button","butt2")
 
             }
@@ -125,4 +122,11 @@ function timerBreakHandler(){
         renderTasks()
     }
 
+}
+
+
+function cerrarModal(){
+    let modal = document.getElementsByClassName("modal-inicial")[0]
+
+    modal.style.display = "none"
 }
